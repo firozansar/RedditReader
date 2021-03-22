@@ -4,7 +4,7 @@ buildscript {
         kotlin_version = "1.4.31"
         nav_version = "2.3.0-beta01"
         retrofit_version = "2.9.0"
-        room_version = "2.2.6"
+        room_version = "2.3.0-beta02"
         lifecycle_version = "2.2.0"
         paging_version = "3.0.0-beta02"
         okhttpclient_version = "4.8.1"

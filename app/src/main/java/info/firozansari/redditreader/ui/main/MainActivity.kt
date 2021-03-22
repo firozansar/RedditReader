@@ -1,12 +1,46 @@
 package info.firozansari.redditreader.ui.main
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.lifecycle.lifecycleScope
 import info.firozansari.redditreader.R
+import info.firozansari.redditreader.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
+    private val mainViewModel by viewModel<MainViewModel>()
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var postAdapter: MainAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupRecyclerView()
+        setupFlowCollector()
+    }
+
+    private fun setupRecyclerView() {
+        postAdapter = MainAdapter { navigateToPost(it.url) }
+        binding.postsRecyclerview.adapter = postAdapter
+    }
+
+    private fun setupFlowCollector() {
+        lifecycleScope.launch {
+            mainViewModel.fetchPosts().collectLatest {
+                postAdapter.submitData(it)
+            }
+        }
+    }
+
+    private fun navigateToPost(url: String) {
+        val builder = CustomTabsIntent.Builder();
+        val customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(this, Uri.parse(url));
+
     }
 }

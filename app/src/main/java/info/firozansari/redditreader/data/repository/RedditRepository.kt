@@ -19,7 +19,7 @@ class RedditRepository(
     fun fetchPosts(): Flow<PagingData<RedditPost>> {
         return Pager(
             PagingConfig(
-                pageSize = 20,
+                pageSize = 40,
                 enablePlaceholders = false,
                 prefetchDistance = 3),
 
