@@ -4,9 +4,11 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import info.firozansari.redditreader.R
 import info.firozansari.redditreader.databinding.ActivityMainBinding
+import info.firozansari.redditreader.util.DividerItemDecorator
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -14,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private val mainViewModel by viewModel<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
-    private lateinit var postAdapter: MainAdapter
+    private lateinit var mainAdapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,14 +27,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        postAdapter = MainAdapter { navigateToPost(it.url) }
-        binding.postsRecyclerview.adapter = postAdapter
+        mainAdapter = MainAdapter { navigateToPost(it.url) }
+        binding.postsRecyclerview.apply {
+            addItemDecoration(
+                DividerItemDecorator(
+                    ContextCompat.getDrawable(
+                        this@MainActivity,
+                        R.drawable.divider
+                    )!!
+                )
+            )
+            adapter = mainAdapter
+        }
     }
 
     private fun setupFlowCollector() {
         lifecycleScope.launch {
             mainViewModel.fetchPosts().collectLatest {
-                postAdapter.submitData(it)
+                mainAdapter.submitData(it)
             }
         }
     }
