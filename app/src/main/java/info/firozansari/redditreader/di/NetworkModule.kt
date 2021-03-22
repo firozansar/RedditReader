@@ -3,6 +3,7 @@ package info.firozansari.redditreader.di
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import info.firozansari.redditreader.data.remote.RedditService
 import info.firozansari.redditreader.util.Constant.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,5 +35,8 @@ val networkModule = module {
             .build()
     }
 
+    factory {
+        get<Retrofit>().create(RedditService::class.java)
+    }
 
 }
