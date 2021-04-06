@@ -21,7 +21,8 @@ class RedditRepository(
             PagingConfig(
                 pageSize = 40,
                 enablePlaceholders = false,
-                prefetchDistance = 3),
+                prefetchDistance = 3
+            ),
 
             remoteMediator = RedditRemoteMediator(redditService, redditDatabase),
             pagingSourceFactory = { redditDatabase.postsDao().getPosts() }

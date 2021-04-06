@@ -11,7 +11,6 @@ import info.firozansari.redditreader.data.local.entity.RedditPost
 import retrofit2.HttpException
 import java.io.IOException
 
-
 @ExperimentalPagingApi
 class RedditRemoteMediator(
     private val redditService: RedditService,

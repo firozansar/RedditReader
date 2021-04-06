@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class RedditPost(
     @PrimaryKey
-    val title : String,
-    val author : String,
+    val title: String,
+    val author: String,
     val url: String
 )

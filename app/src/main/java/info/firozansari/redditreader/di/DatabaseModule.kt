@@ -10,7 +10,7 @@ val databaseModule = module {
 
     single {
         Room.databaseBuilder(androidApplication(), RedditDatabase::class.java, DATABASE_NAME)
-        .fallbackToDestructiveMigration()
-        .build()
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }

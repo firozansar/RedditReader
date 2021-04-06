@@ -12,5 +12,4 @@ interface RedditService {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null
     ): RedditResponse
-
 }

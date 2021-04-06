@@ -9,8 +9,12 @@ import info.firozansari.redditreader.data.local.entity.RedditPost
 import info.firozansari.redditreader.util.Constant.DATABASE_VERSION
 import info.firozansari.redditreader.util.Constant.EXPORT_SCHEMA
 
-@Database(entities = [RedditPost::class, RedditKeys::class], version = DATABASE_VERSION, exportSchema = EXPORT_SCHEMA)
+@Database(
+    entities = [RedditPost::class, RedditKeys::class],
+    version = DATABASE_VERSION,
+    exportSchema = EXPORT_SCHEMA
+)
 abstract class RedditDatabase : RoomDatabase() {
-    abstract fun postsDao() : PostsDao
+    abstract fun postsDao(): PostsDao
     abstract fun keysDao(): KeysDao
 }

@@ -12,7 +12,7 @@ class MainViewModel(
     private val redditRepository: RedditRepository
 ) : ViewModel() {
 
-    fun fetchPosts() : Flow<PagingData<RedditPost>> {
+    fun fetchPosts(): Flow<PagingData<RedditPost>> {
         return redditRepository.fetchPosts().cachedIn(viewModelScope)
     }
 }

@@ -1,8 +1,8 @@
 package info.firozansari.redditreader.ui.main
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -50,9 +50,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToPost(url: String) {
-        val builder = CustomTabsIntent.Builder();
-        val customTabsIntent = builder.build();
-        customTabsIntent.launchUrl(this, Uri.parse(url));
-
+        val builder = CustomTabsIntent.Builder()
+        val customTabsIntent = builder.build()
+        customTabsIntent.launchUrl(this, Uri.parse(url))
     }
 }
