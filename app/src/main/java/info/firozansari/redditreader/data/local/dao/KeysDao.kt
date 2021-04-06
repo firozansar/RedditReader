@@ -14,5 +14,4 @@ interface KeysDao {
 
     @Query("SELECT * FROM RedditKeys ORDER BY id DESC")
     suspend fun getRedditKeys(): List<RedditKeys>
-
 }

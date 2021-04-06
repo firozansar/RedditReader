@@ -16,35 +16,33 @@ class MainAdapter(val postClick: (RedditPost) -> Unit) :
             holder.bindTo(post)
             holder.itemView.setOnClickListener { postClick(post) }
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val binding = ListItemPostBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+        return PostViewHolder(
+            ListItemPostBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
-
-        return PostViewHolder(binding)
     }
 
-    class PostViewHolder(private val binding: ListItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
+    class PostViewHolder(private val binding: ListItemPostBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bindTo(redditPost: RedditPost) {
             with(redditPost) {
-                binding.postTitle.text =  title
+                binding.postTitle.text = title
                 binding.authorName.text = "by $author"
             }
         }
     }
 }
 
-
 val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RedditPost>() {
     override fun areItemsTheSame(oldItem: RedditPost, newItem: RedditPost): Boolean {
         return oldItem.title == newItem.title &&
-                oldItem.author == newItem.author
+            oldItem.author == newItem.author
     }
 
     override fun areContentsTheSame(oldItem: RedditPost, newItem: RedditPost): Boolean {

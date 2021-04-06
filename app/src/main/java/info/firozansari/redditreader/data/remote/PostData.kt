@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 import info.firozansari.redditreader.data.local.entity.RedditPost
 
 data class PostData(
-    @SerializedName("author") val author : String,
-    @SerializedName("title") val title : String,
+    @SerializedName("author") val author: String,
+    @SerializedName("title") val title: String,
     @SerializedName("url") val url: String
 )
 

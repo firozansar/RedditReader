@@ -28,7 +28,7 @@ class RedditRemoteMediator(
                 LoadType.APPEND -> {
                     state.lastItemOrNull()
                         ?: return MediatorResult.Success(endOfPaginationReached = true)
-                    getRedditKeys()
+                    redditDatabase.keysDao().getRedditKeys().firstOrNull()
                 }
             }
 
@@ -51,9 +51,5 @@ class RedditRemoteMediator(
         } catch (exception: HttpException) {
             MediatorResult.Error(exception)
         }
-    }
-
-    private suspend fun getRedditKeys(): RedditKeys? {
-        return redditDatabase.keysDao().getRedditKeys().firstOrNull()
     }
 }
