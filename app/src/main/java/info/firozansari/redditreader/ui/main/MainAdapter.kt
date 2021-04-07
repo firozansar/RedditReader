@@ -41,8 +41,7 @@ class MainAdapter(val postClick: (RedditPost) -> Unit) :
 
 val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RedditPost>() {
     override fun areItemsTheSame(oldItem: RedditPost, newItem: RedditPost): Boolean {
-        return oldItem.title == newItem.title &&
-            oldItem.author == newItem.author
+        return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: RedditPost, newItem: RedditPost): Boolean {
