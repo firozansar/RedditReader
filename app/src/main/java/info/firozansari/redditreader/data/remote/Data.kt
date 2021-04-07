@@ -1,12 +1,9 @@
 package info.firozansari.redditreader.data.remote
 
-import com.google.gson.annotations.SerializedName
-
 data class Data(
-
-    @SerializedName("modhash") val modhash: String,
-    @SerializedName("dist") val dist: Int,
-    @SerializedName("children") val children: List<Children>,
-    @SerializedName("after") val after: String?,
-    @SerializedName("before") val before: String?
+    val modhash: String,
+    val dist: Int,
+    val children: List<Children>,
+    val after: String?,
+    val before: String?
 )
