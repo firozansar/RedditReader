@@ -6,10 +6,8 @@ import info.firozansari.redditreader.di.AppComponent
 import info.firozansari.redditreader.di.DaggerAppComponent
 import javax.inject.Inject
 
-open class App : Application(), HasActivityInjector {
+open class App : Application(){
 
-    @Inject
-    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
@@ -17,19 +15,9 @@ open class App : Application(), HasActivityInjector {
     }
 
     protected open fun initAppComponent() {
-        val appComponent = DaggerAppComponent
-            .builder()
-            .app(this)
-            .build()
-
-        initAppComponent(appComponent)
+        val appComponent: AppComponent by lazy {
+            DaggerAppComponent.builder().application(this).build()
+        }
     }
 
-    fun initAppComponent(appComponent: AppComponent) {
-        appComponent.inject(this)
-    }
-
-    override fun activityInjector(): AndroidInjector<Activity> {
-        return dispatchingActivityInjector
-    }
 }

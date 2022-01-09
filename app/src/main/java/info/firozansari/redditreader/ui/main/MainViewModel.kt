@@ -7,8 +7,9 @@ import androidx.paging.cachedIn
 import info.firozansari.redditreader.data.local.entity.RedditPost
 import info.firozansari.redditreader.data.repository.RedditRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class MainViewModel(
+class MainViewModel @Inject constructor(
     private val redditRepository: RedditRepository
 ) : ViewModel() {
 

@@ -9,8 +9,9 @@ import info.firozansari.redditreader.data.local.entity.RedditPost
 import info.firozansari.redditreader.data.remote.RedditRemoteMediator
 import info.firozansari.redditreader.data.remote.RedditService
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class RedditRepository(
+class RedditRepository @Inject constructor(
     private val redditService: RedditService,
     private val redditDatabase: RedditDatabase
 ) {

@@ -2,19 +2,25 @@ package info.firozansari.redditreader.ui.main
 
 import android.net.Uri
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import info.firozansari.redditreader.databinding.ActivityMainBinding
+import info.firozansari.redditreader.di.ViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     @Inject
-    internal lateinit var viewModelFactory: ViewModelFactory<MainViewModel>
-    private lateinit var mainViewModel: MainViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    val mainViewModel: MainViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory)[MainViewModel::class.java]
+    }
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainAdapter: MainAdapter
 
@@ -24,7 +30,6 @@ class MainActivity : DaggerAppCompatActivity() {
         setContentView(binding.root)
         setupRecyclerView()
         setupFlowCollector()
-        mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
 
     private fun setupRecyclerView() {

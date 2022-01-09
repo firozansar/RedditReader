@@ -1,13 +1,17 @@
 package info.firozansari.redditreader.di
 
+import androidx.lifecycle.ViewModel
+import dagger.Binds
 import dagger.Module
-import info.firozansari.redditreader.ui.main.MainActivity
+import dagger.multibindings.IntoMap
+import info.firozansari.redditreader.ui.main.MainViewModel
 
 @Module
 abstract class UiModule {
 
-    // Activities
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
 
-    @ContributesAndroidInjector
-    abstract fun mainActivity(): MainActivity
 }
