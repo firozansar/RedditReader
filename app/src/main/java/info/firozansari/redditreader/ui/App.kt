@@ -1,22 +1,35 @@
 package info.firozansari.redditreader.ui
 
+import android.app.Activity
 import android.app.Application
-import info.firozansari.redditreader.di.databaseModule
-import info.firozansari.redditreader.di.networkModule
-import info.firozansari.redditreader.di.repositoryModule
-import info.firozansari.redditreader.di.viewModelModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import info.firozansari.redditreader.di.AppComponent
+import info.firozansari.redditreader.di.DaggerAppComponent
+import javax.inject.Inject
 
-class App : Application() {
+open class App : Application(), HasActivityInjector {
+
+    @Inject
+    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
+        initAppComponent()
+    }
 
-        startKoin {
-            printLogger()
-            androidContext(this@App)
-            modules(listOf(networkModule, databaseModule, repositoryModule, viewModelModule))
-        }
+    protected open fun initAppComponent() {
+        val appComponent = DaggerAppComponent
+            .builder()
+            .app(this)
+            .build()
+
+        initAppComponent(appComponent)
+    }
+
+    fun initAppComponent(appComponent: AppComponent) {
+        appComponent.inject(this)
+    }
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return dispatchingActivityInjector
     }
 }
