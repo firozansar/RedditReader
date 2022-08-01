@@ -5,22 +5,16 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
 import info.firozansari.redditreader.databinding.ActivityMainBinding
-import info.firozansari.redditreader.di.ViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    val mainViewModel: MainViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory)[MainViewModel::class.java]
-    }
+
+    private val mainViewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainAdapter: MainAdapter
 
