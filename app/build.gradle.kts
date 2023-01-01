@@ -67,6 +67,16 @@ android {
         jvmTarget = "11"
     }
 
+    kapt {
+        correctErrorTypes = true
+    }
+    dataBinding {
+       enable = true
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+
     useLibrary("android.test.runner")
     useLibrary("android.test.base")
     useLibrary("android.test.mock")
@@ -90,20 +100,50 @@ dependencies {
 
     coreLibraryDesugaring(libs.desugarJdk)
 
+    // AndroidX
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.lifecycle)
+
+    implementation(libs.constraintlayout)
+    implementation(libs.material)
+
     implementation(libs.coroutines.core)
-    implementation(libs.coroutines.rx3)
+    implementation(libs.coroutines.android)
+
+    // Lifecycle
+    implementation(libs.lifecycle)
+    kapt(libs.lifecycle.compiler)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.retrofit.moshi)
+    implementation(libs.retrofit.coroutines.adapter)
+    implementation(libs.httpLog)
+
+    // Navigation
+    implementation(libs.navigation.frag)
+    implementation(libs.navigation.ui)
 
     // Moshi
     implementation(libs.moshi)
     implementation(libs.moshiCodeGen)
 
-    // Dagger
+    // Gson
+    implementation(libs.gson)
+
+    implementation(libs.paging)
+    implementation(libs.browser)
+
+    // Dagger Hilt
     implementation(libs.dagger.hilt.runtime)
     kapt(libs.dagger.hilt.compiler)
 
-    // RxJava3
-    implementation(libs.rxJava)
-    implementation(libs.rxAndroid)
+    // Room
+    implementation(libs.roomRuntime)
+    kapt(libs.roomCompiler)
+    implementation(libs.roomKotlinExt)
+    implementation(libs.roomPaging)
 
     // Unit test  dependencies
     testImplementation(libs.mockK)
