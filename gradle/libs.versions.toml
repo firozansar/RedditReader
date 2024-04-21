@@ -6,7 +6,7 @@ targetSdk = "33"
 kotlinVersion = "1.7.10"
 
 # Plugin versions
-androidGradlePluginVersion = "7.3.1"
+androidGradlePluginVersion = "7.4.2"
 
 #Lib versions
 appCompatVersion = "1.5.1"
