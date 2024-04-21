@@ -16,6 +16,7 @@ plugins {
 }
 
 android {
+    namespace = "info.firozansari.redditreader"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -81,14 +82,7 @@ android {
     useLibrary("android.test.base")
     useLibrary("android.test.mock")
 
-    // Required to run Espresso/Integration tests
-    packagingOptions {
-        resources.excludes += "META-INF/LICENSE.md"
-        resources.excludes += "META-INF/LICENSE-notice.md"
-        resources.excludes += "META-INF/AL2.0"
-        resources.excludes += "META-INF/LGPL2.1"
-        resources.excludes += "META-INF/gradle/incremental.annotation.processors"
-    }
+
     configurations {
         androidTestImplementation {
             exclude(group = "io.mockk", module = "mockk-agent-jvm")
