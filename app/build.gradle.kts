@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 repositories {
     google()
     mavenCentral()
@@ -86,6 +88,23 @@ android {
     configurations {
         androidTestImplementation {
             exclude(group = "io.mockk", module = "mockk-agent-jvm")
+        }
+    }
+
+
+    // Dependencies tree gets added in new_dependencies.txt file
+    //./gradlew app:appDependenciesReport --quiet > new_dependencies.txt
+    tasks.register<DependencyReportTask>("appDependenciesReport") {
+        configurations = project.configurations.filter {
+            !it.name.contains("test", ignoreCase = true) &&
+                    (it.name.contains("debug", ignoreCase = true) ||
+                            it.name.contains("release", ignoreCase = true))
+        }.toSet()
+    }
+
+    packaging {
+        resources {
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
 }
