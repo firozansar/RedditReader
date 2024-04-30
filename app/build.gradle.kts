@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.LintOptions
 import com.android.build.api.dsl.Packaging
 
 repositories {
@@ -106,6 +107,15 @@ android {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
+    }
+
+    lint {
+        abortOnError = false
+        xmlReport = true
+        htmlReport = true
+        checkReleaseBuilds = false
+        ignoreWarnings = true
+        lintConfig = file("lint.xml")
     }
 }
 
