@@ -15,3 +15,11 @@ This is a sample Android MVVM project written in Kotlin.
 
 Just clone the project and open in Android Studio.
 
+
+## API changes update
+
+https://www.reddit.com/prefs/apps
+
+https://www.reddit.com/r/redditsync/comments/14lkhnz/this_revanced_patch_makes_sync_work_after_api/
+
+

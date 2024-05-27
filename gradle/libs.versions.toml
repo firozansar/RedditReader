@@ -6,7 +6,7 @@ targetSdk = "34"
 kotlinVersion = "1.9.22"
 
 # Plugin versions
-androidGradlePluginVersion = "8.3.2"
+androidGradlePluginVersion = "8.4.0"
 
 #Lib versions
 appCompatVersion = "1.6.1"
@@ -102,7 +102,6 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gsonVersion" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiVersion" }
 moshiCodeGen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiVersion" }
 
-#Gson
 httpLog = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "httpLogVersion" }
 
 #RxJava
